@@ -70,7 +70,6 @@ judge() {
 }
 
 function update_sh() {
-  待修改更新地址
   ol_version=$(curl -L -s https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/xwall.sh | grep "shell_version=" | head -1 | awk -F '=|"' '{print $3}')
   if [[ "$shell_version" != "$(echo -e "$shell_version\n$ol_version" | sort -rV | head -1)" ]]; then
     print_ok "存在新版本，是否更新 [Y/N]?"
