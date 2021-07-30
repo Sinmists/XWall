@@ -1,4 +1,4 @@
-# 一键脚本
+# One-key install 
 
 ## 安装
 VLESS + TCP + XTLS / TLS  + Nginx
