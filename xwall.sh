@@ -69,25 +69,25 @@ judge() {
   fi
 }
 
-function update_sh() {
-  ol_version=$(curl -L -s https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/xwall.sh | grep "shell_version=" | head -1 | awk -F '=|"' '{print $3}')
-  if [[ "$shell_version" != "$(echo -e "$shell_version\n$ol_version" | sort -rV | head -1)" ]]; then
-    print_ok "存在新版本，是否更新 [Y/N]?"
-    read -r update_confirm
-    case $update_confirm in
-    [yY][eE][sS] | [yY])
-      wget -N --no-check-certificate https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/xwall.sh
-      print_ok "更新完成"
-      print_ok "您可以通过 bash $0 执行本程序"
-      exit 0
-      ;;
-    *) ;;
-    esac
-  else
-    print_ok "当前版本为最新版本"
-    print_ok "您可以通过 bash $0 执行本程序"
-  fi
-}
+# function update_sh() {
+#   ol_version=$(curl -L -s https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/xwall.sh | grep "shell_version=" | head -1 | awk -F '=|"' '{print $3}')
+#   if [[ "$shell_version" != "$(echo -e "$shell_version\n$ol_version" | sort -rV | head -1)" ]]; then
+#     print_ok "存在新版本，是否更新 [Y/N]?"
+#     read -r update_confirm
+#     case $update_confirm in
+#     [yY][eE][sS] | [yY])
+#       wget -N --no-check-certificate https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/xwall.sh
+#       print_ok "更新完成"
+#       print_ok "您可以通过 bash $0 执行本程序"
+#       exit 0
+#       ;;
+#     *) ;;
+#     esac
+#   else
+#     print_ok "当前版本为最新版本"
+#     print_ok "您可以通过 bash $0 执行本程序"
+#   fi
+# }
 
 function shell_mode_check() {
   if [ -f ${xray_conf_dir}/config.json ]; then
@@ -226,10 +226,10 @@ function dependency_install() {
 
   ${INS} libpcre3 libpcre3-dev zlib1g-dev openssl libssl-dev
   judge "安装 libpcre3 libpcre3-dev zlib1g-dev openssl libssl-dev"
-  
+
   ${INS} jq
   judge "安装 jq"
- 
+
   # 防止部分系统xray的默认bin目录缺失
   mkdir /usr/local/bin >/dev/null 2>&1
 }
@@ -367,7 +367,7 @@ function acme() {
       print_ok "SSL 证书配置成功"
       print_ok "创建自动续期任务如下："
       crontab -l # 检查定时任务
-      "$HOME"/.acme.sh/acme.sh  --upgrade  --auto-upgrade
+      "$HOME"/.acme.sh/acme.sh --upgrade --auto-upgrade
       print_ok "已打开acme脚本自动更新"
       sleep 2
     fi
@@ -481,7 +481,7 @@ function xray_uninstall() {
 
 # 面板选项---------------------------------------------------------------------------
 menu() {
-  update_sh
+  # update_sh
   shell_mode_check
   echo -e "\t ${Blue}Xray 安装管理脚本 ${Blue}[${shell_version}]${Font}"
   echo -e "\t${Blue}---authored by Sinmists---${Font}"
