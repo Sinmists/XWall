@@ -1,7 +1,5 @@
 # 一键脚本
 
-[TOC]
-
 ## 安装
 VLESS + TCP + XTLS / TLS  + Nginx
 ```
