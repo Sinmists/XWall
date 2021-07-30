@@ -5,11 +5,6 @@
 #	Author:	Sinmists
 #	Dscription: Project XWall
 #====================================================
-# 待修改函数（含源地址）
-# function update_sh
-# configure_xray
-# configure_nginx
-# configure_web
 
 # 目录
 # |-基础配置
