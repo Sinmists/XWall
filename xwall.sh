@@ -74,26 +74,26 @@ judge() {
   fi
 }
 
-# function update_sh() {
-  # 待修改更新地址
-#   ol_version=$(curl -L -s https://raw.githubusercontent.com/wulabing/Xray_onekey/${github_branch}/install.sh | grep "shell_version=" | head -1 | awk -F '=|"' '{print $3}')
-#   if [[ "$shell_version" != "$(echo -e "$shell_version\n$ol_version" | sort -rV | head -1)" ]]; then
-#     print_ok "存在新版本，是否更新 [Y/N]?"
-#     read -r update_confirm
-#     case $update_confirm in
-#     [yY][eE][sS] | [yY])
-#       wget -N --no-check-certificate https://raw.githubusercontent.com/wulabing/Xray_onekey/${github_branch}/install.sh
-#       print_ok "更新完成"
-#       print_ok "您可以通过 bash $0 执行本程序"
-#       exit 0
-#       ;;
-#     *) ;;
-#     esac
-#   else
-#     print_ok "当前版本为最新版本"
-#     print_ok "您可以通过 bash $0 执行本程序"
-#   fi
-# }
+function update_sh() {
+  待修改更新地址
+  ol_version=$(curl -L -s https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/xwall.sh | grep "shell_version=" | head -1 | awk -F '=|"' '{print $3}')
+  if [[ "$shell_version" != "$(echo -e "$shell_version\n$ol_version" | sort -rV | head -1)" ]]; then
+    print_ok "存在新版本，是否更新 [Y/N]?"
+    read -r update_confirm
+    case $update_confirm in
+    [yY][eE][sS] | [yY])
+      wget -N --no-check-certificate https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/xwall.sh
+      print_ok "更新完成"
+      print_ok "您可以通过 bash $0 执行本程序"
+      exit 0
+      ;;
+    *) ;;
+    esac
+  else
+    print_ok "当前版本为最新版本"
+    print_ok "您可以通过 bash $0 执行本程序"
+  fi
+}
 
 function shell_mode_check() {
   if [ -f ${xray_conf_dir}/config.json ]; then
@@ -167,7 +167,7 @@ function basic_optimization() {
 }
 
 function domain_check() {
-  read -rp "请输入你的域名信息(eg: www.wulabing.com):" domain
+  read -rp "请输入你的域名信息:" domain
   domain_ip=$(ping "${domain}" -c 1 | sed '1{s/[^(]*(//;s/).*//;q}')
   print_ok "正在获取 IP 地址信息，请耐心等待"
   local_ip=$(curl -4L api64.ipify.org)
@@ -251,7 +251,7 @@ function xray_install() {
 }
 
 function configure_xray() {
-  cd /usr/local/etc/xray && rm -f config.json && wget -O config.json https://raw.githubusercontent.com/wulabing/Xray_onekey/${github_branch}/config/xray_xtls-rprx-direct.json
+  cd /usr/local/etc/xray && rm -f config.json && wget -O config.json https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/config/xray_xtls-rprx-direct.json
   modify_UUID
   modify_port
 }
@@ -298,7 +298,7 @@ function nginx_install() {
 
 function configure_nginx() {
   nginx_conf="/etc/nginx/conf.d/${domain}.conf"
-  cd /etc/nginx/conf.d/ && rm -f ${domain}.conf && wget -O ${domain}.conf https://raw.githubusercontent.com/wulabing/Xray_onekey/${github_branch}/config/web.conf
+  cd /etc/nginx/conf.d/ && rm -f ${domain}.conf && wget -O ${domain}.conf https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/config/web.conf
   sed -i "s/xxx/${domain}/g" ${nginx_conf}
   judge "Nginx config modify"
 
@@ -308,7 +308,7 @@ function configure_nginx() {
 function configure_web() {
   rm -rf $website_dir
   mkdir -p $website_dir
-  wget -O web.tar.gz https://raw.githubusercontent.com/wulabing/Xray_onekey/main/basic/web.tar.gz
+  wget -O web.tar.gz https://raw.githubusercontent.com/Sinmists/XWall/main/resources/web.tar.gz
   tar xzf web.tar.gz -C $website_dir
   judge "站点伪装"
   rm -f web.tar.gz
@@ -487,7 +487,7 @@ function xray_uninstall() {
 
 # 面板选项---------------------------------------------------------------------------
 menu() {
-  # update_sh
+  update_sh
   shell_mode_check
   echo -e "\t ${Blue}Xray 安装管理脚本 ${Blue}[${shell_version}]${Font}"
   echo -e "\t${Blue}---authored by Sinmists---${Font}"
@@ -495,7 +495,7 @@ menu() {
 
   echo -e "当前已安装版本：${shell_mode}"
   echo -e "—————————————— 安装向导 ——————————————"""
-  echo -e "${Green}0.${Font}  升级 脚本（暂未开放）"
+  echo -e "${Green}0.${Font}  升级 脚本"
   echo -e "${Green}1.${Font}  安装 Xray (VLESS + TCP + XTLS / TLS + Nginx)"
   echo -e "—————————————— 配置变更 ——————————————"
   echo -e "${Green}11.${Font} 变更 UUID"
