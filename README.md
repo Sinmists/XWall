@@ -5,7 +5,7 @@
 > 
 VLESS + TCP + XTLS / TLS  + Nginx
 ```
-wget -N --no-check-certificate -q -O xwall.sh "https://raw.githubusercontent.com/Sinmists/XWall/main/xwall.sh?token=AJDN3FCWMEGJ3FZBN3FGTNLBAQMUW" && chmod +x xwall.sh && ./xwall.sh
+wget -N --no-check-certificate -q -O xwall.sh "https://github.com/Sinmists/XWall/blob/40cbad1a58284dac1c45ae859f45cc21f5400165/xwall.sh" && chmod +x xwall.sh && ./xwall.sh
 ```
 
 ## 参考 
