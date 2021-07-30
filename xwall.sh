@@ -45,7 +45,7 @@ ERROR="${Red}[ERROR]${Font}"
 # 变量
 shell_version="1.0"
 github_branch="main"
-website_dir="/www/xray_web/" # configure_web 使用但未引用
+website_dir="/www/xray_web/"
 xray_access_log="/var/log/xray/access.log"
 xray_error_log="/var/log/xray/error.log"
 xray_conf_dir="/usr/local/etc/xray"
