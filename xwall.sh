@@ -78,14 +78,14 @@ function update_sh() {
     [yY][eE][sS] | [yY])
       wget -N --no-check-certificate https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/xwall.sh
       print_ok "更新完成"
-      print_ok "您可以通过 bash $0 执行本程序"
+      print_ok "通过 bash $0 执行本程序"
       exit 0
       ;;
     *) ;;
     esac
   else
     print_ok "当前版本为最新版本"
-    print_ok "您可以通过 bash $0 执行本程序"
+    print_ok "通过 bash $0 执行本程序"
   fi
 }
 
