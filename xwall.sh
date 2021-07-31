@@ -293,7 +293,7 @@ function nginx_install() {
 function configure_nginx() {
   nginx_conf="/etc/nginx/conf.d/${domain}.conf"
   cd /etc/nginx/conf.d/ && rm -f ${domain}.conf && wget -O ${domain}.conf https://raw.githubusercontent.com/Sinmists/XWall/${github_branch}/config/web.conf
-  sed -i "s/xxx/${domain}/g" ${nginx_conf}
+  sed -i "s/xxx/${domain}/g" ${nginx_conf} # 替换"xxx"为域名
   judge "Nginx config modify"
 
   systemctl restart nginx
