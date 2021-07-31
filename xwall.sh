@@ -29,10 +29,10 @@ cd "$(
 # 字体颜色
 Green="\033[32m"
 Red="\033[31m"
-Yellow="\033[33m"
+# Yellow="\033[33m"
 Blue="\033[36m"
 Font="\033[0m"
-GreenBG="\033[42;37m"
+# GreenBG="\033[42;37m"
 RedBG="\033[41;37m"
 OK="${Green}[OK]${Font}"
 ERROR="${Red}[ERROR]${Font}"
@@ -446,7 +446,7 @@ function vless_xtls-rprx-direct_link() {
 # 三方脚本---------------------------------------------------------------------------
 function bbr_boost_sh() {
   [ -f "tcp.sh" ] && rm -rf ./tcp.sh
-  wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+  wget -N --no-check-certificate "https://raw.githubusercontent.com/Sinmists/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
 }
 
 # 卸载函数---------------------------------------------------------------------------
