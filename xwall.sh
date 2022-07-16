@@ -446,7 +446,7 @@ function vless_xtls-rprx-direct_link() {
 # 三方脚本---------------------------------------------------------------------------
 function bbr_boost_sh() {
   [ -f "tcp.sh" ] && rm -rf ./tcp.sh
-  wget -N --no-check-certificate "https://raw.githubusercontent.com/Sinmists/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+  wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
 }
 
 # 卸载函数---------------------------------------------------------------------------
